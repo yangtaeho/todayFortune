@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta title="오늘의 운세 큄쮸글 & 태호">
+<title>오늘의 운세</title>
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		console.log("ready!");
+		
+		/**
+		* 카테고리별 운세 출력 틀 생성.
+		*/
+		var myLuckyTemplate = function(myLucky, myLuckyCategory, value) {
+			$('#'+myLucky).html('');
+			$('#'+myLucky).append($('#hide').clone().children());
+			$('#'+myLucky+' h3').text('오늘의 ' + myLuckyCategory);
+			$('#'+myLucky+' article').text(value + '입니다.');
+			console.log('create = ' + myLuckyCategory);
+		};
+		
+		/**
+		 * 랜덤 문자열 출력
+		 출처: http://code.p-ark.co.kr/306
+		 * @return
+		 */
+		var getRandTestString = function(myLucky){
+			var RandomData = [];
+    		if(myLucky == 'love'){
+    			RandomData = ['보통', '좋음', '아주 좋음', '엄청나게 좋음', '있을 때 잘해', '엄청난 사랑을 받고 있음'];
+    		}
+    		if(myLucky == 'money'){
+    			RandomData = ['보통', '좋음', '아주 좋음', '엄청나게 좋음', '호박이 덩굴째 굴러 들어옴', '지름신 강림 주의보!!'];
+    		}
+    		if(myLucky == 'number'){
+    			RandomData = [1984, 10, 20, 1988, 2, 23, 2012, 8 , 13, 7];
+    			RandomData.push(Math.floor(Math.random() * 10)+1);
+    		}
+    		if(myLucky == 'item'){
+    			RandomData = ['숟가락', '젓가락', '악기', '가방', '교통카드', '숄더백', '가디건', '모자', '운동화'];
+    		}
+
+    		console.log('RandomData.length = ' + RandomData.length);
+    		var result = Math.floor(Math.random() * RandomData.length); //출처: http://mwultong.blogspot.com/2006/11/random-javascript.html
+			
+			return RandomData[result];
+		}
+		
+		//카테고리 별 운세 출력
+		var myLucky = function(myLucky) {
+			var myLuckyCategory ='';
+			if(myLucky == 'love'){
+				myLuckyCategory = '연애운';
+			}
+			if(myLucky == 'money'){
+				myLuckyCategory = '금전운';
+			}
+			if(myLucky == 'number'){
+				myLuckyCategory = '행운의 숫자';
+			}
+			if(myLucky == 'item'){
+				myLuckyCategory = '행운의 물건';
+			}
+			var value = getRandTestString(myLucky);
+			myLuckyTemplate(myLucky, myLuckyCategory, value);
+			console.log(myLucky + ', ' +  myLuckyCategory + ', ' +  value);
+		};
+		
+    	$('#todayMyFortune').click(
+    		function(){
+    			$('#main').css('display', 'block');
+        		myLucky('love');
+        		myLucky('money');
+        		myLucky('number');
+        		myLucky('item');
+    		}
+    	);
+	});
+</script>
+</head>
+<body>
+    <h1>오늘의 운세</h1>
+    <input type='button' id='todayMyFortune' value='클릭하세요♥'/>
+    <ul id='main' style='display:none;'>
+        <li id='love'></li>
+        <li id='money'></li>
+        <li id='number'></li>
+        <li id='item'></li>
+        <li id='hide' style='display:none;'>
+            <h3>dd
+            </h3>
+            <article>ee
+            </article>
+        </li>
+    </ul>
+    <div>for You KYJ</div>
+</body>
+</html>
