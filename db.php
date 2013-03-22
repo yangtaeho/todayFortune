@@ -1,6 +1,6 @@
 <?php
 ini_set("display_errors", "1");
-$host = 'localhost';
+$host = 'domU-12-31-39-10-56-F4';
 $username = 'root';
 $password = '111111';
 $dbname = 'today_fortune';
