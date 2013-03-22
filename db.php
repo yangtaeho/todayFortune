@@ -1,6 +1,6 @@
 <?php
 ini_set("display_errors", "1");
-$host = 'http://ec2-23-23-52-147.compute-1.amazonaws.com';
+$host = 'ec2-23-23-52-147.compute-1.amazonaws.com';
 $username = 'root';
 $password = '111111';
 $dbname = 'today_fortune';
